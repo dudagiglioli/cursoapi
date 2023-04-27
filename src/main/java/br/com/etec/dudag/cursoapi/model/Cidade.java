@@ -1,7 +1,6 @@
-package model;
+package br.com.etec.dudag.cursoapi.model;
 
 import javax.persistence.*;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

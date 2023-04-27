@@ -1,4 +1,4 @@
-package model;
+package br.com.etec.dudag.cursoapi.model;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -2,7 +2,7 @@
 // get and set (publicos) - leem e atribuem valores - é comum a todo o meu sistema
 // toda a tabela do BD gera uma classe
 // hashCode so usa nos campos que ñ se repetem (chave PRIMARIA - ID)
-package model;
+package br.com.etec.dudag.cursoapi.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Curso {
 
     private Integer id;
 
-    private String nomeCurso;
+    private String nomecurso;
 
     @OneToMany(mappedBy = "curso")
     //gerando a relação um para muitos
@@ -43,11 +43,11 @@ public class Curso {
     }
 
     public String getNomeCurso() {
-        return nomeCurso;
+        return nomecurso;
     }
 
     public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;
+        this.nomecurso = nomeCurso;
     }
 
     @Override
