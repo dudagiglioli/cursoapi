@@ -2,7 +2,7 @@ Alter table aluno add constraint FK_curso_aluno
                     foreign key (idcurso) references curso(id);
 
 Alter table aluno add constraint FK_cidade_aluno
-                    foreign key (idcidade) references cidade(id);
+                    foreign key (idcidade) references cidade(idcidade);
 
 insert into curso(nomecurso) values ('Administração');
 
