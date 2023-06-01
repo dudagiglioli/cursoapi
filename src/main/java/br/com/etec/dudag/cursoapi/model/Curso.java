@@ -4,6 +4,8 @@
 // hashCode so usa nos campos que ñ se repetem (chave PRIMARIA - ID)
 package br.com.etec.dudag.cursoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ public class Curso {
 
     private String nomecurso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "curso")
     //gerando a relação um para muitos
     private List<Aluno> alunoscursos = new ArrayList<>();
