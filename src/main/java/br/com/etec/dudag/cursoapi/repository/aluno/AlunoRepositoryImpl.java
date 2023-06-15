@@ -23,7 +23,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
   private EntityManager manager;
 
   @Override
-  public Page<AlunoDto> Filtrar(AlunoFilter alunoFilter, Pageable pageable) {
+  public Page<AlunoDto> filtrar(AlunoFilter alunoFilter, Pageable pageable) {
     CriteriaBuilder builder = manager.getCriteriaBuilder();
     CriteriaQuery<AlunoDto> criteria = builder.createQuery((AlunoDto.class));
     Root<Aluno> root = criteria.from((Aluno.class));
@@ -43,8 +43,22 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
     TypedQuery<AlunoDto> query = manager.createQuery(criteria);
     addrestricoesdepaginacao(query, pageable);
 
-    return new PageImpl<>(query.getResultList(),pageable, totaldePaginas(alunoFilter));
+    return null;
 }
+
+    private Long total(AlunoFilter alunoFilter){
+      CriteriaBuilder builder = manager.getCriteriaBuilder();
+      CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
+      Root<Aluno> root = criteria.from(Aluno.class);
+
+        Predicate[] predicates = criarRestricoes(alunoFilter, builder, root);
+        criteria.where(predicates);
+        criteria.orderBy(builder.asc(root.get("nomealuno")));
+
+        criteria.select(builder.count(root));
+
+        return manager.createQuery(criteria).getSingleResult();
+    }
 
 // ? substitui o nome da classe, deixa ela genérica
   public void totaldePaginas(TypedQuery<?> query, Pageable pageable) {
@@ -55,4 +69,6 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
     query.setFirstResult(primeiroregistropag);
     query.setMaxResults(totalderestricoesporpag);
   }
+
+
 }
